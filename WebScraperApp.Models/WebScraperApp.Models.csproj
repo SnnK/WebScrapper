@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Udemy.cs" />
+    <Compile Include="BotDetail.cs" />
     <Compile Include="Links.cs" />
     <Compile Include="Courses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

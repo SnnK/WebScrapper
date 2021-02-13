@@ -61,13 +61,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Udemy.Business\Udemy.Business.csproj">
+    <ProjectReference Include="..\WebScraperApp.Business\WebScraperApp.Business.csproj">
       <Project>{8e69216e-c1db-4f84-8c29-97b7eb8e519a}</Project>
-      <Name>Business</Name>
+      <Name>WebScraperApp.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Udemy.Models\Udemy.Models.csproj">
+    <ProjectReference Include="..\WebScraperApp.Models\WebScraperApp.Models.csproj">
       <Project>{3669ff95-ad15-4cb6-a506-58731de8aca1}</Project>
-      <Name>Models</Name>
+      <Name>WebScraperApp.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

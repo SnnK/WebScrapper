@@ -1,14 +1,13 @@
-﻿using System;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
-using Models;
+using WebScraperApp.Models;
 
-namespace Business
+namespace WebScraperApp.Business
 {
     public static class Statics
     {
@@ -43,6 +42,7 @@ namespace Business
                     links.Add(match.Groups[1].ToString());
                 }
             }
+
             return links;
         }
 
@@ -61,9 +61,9 @@ namespace Business
             return links;
         }
 
-        public static List<links> FindUdemies(List<string> links, string searchStr = "udemy.com/") 
+        public static List<Links> FindUdemies(List<string> links, string searchStr = "udemy.com/")
         {
-            List<links> ulinks = new List<links>();
+            List<Links> ulinks = new List<Links>();
 
             if (links.Count() > 0)
             {
@@ -78,7 +78,7 @@ namespace Business
                         {
                             if (linkditem.Contains(searchStr))
                             {
-                                ulinks.Add(new links { udemyurl = linkditem });
+                                ulinks.Add(new Links { Udemyurl = linkditem });
                             }
                         }
                     }
@@ -94,6 +94,7 @@ namespace Business
         {
             StringWriter writer = new StringWriter();
             HttpUtility.HtmlDecode(s.ToString(), writer);
+
             return writer.ToString();
         }
         #endregion

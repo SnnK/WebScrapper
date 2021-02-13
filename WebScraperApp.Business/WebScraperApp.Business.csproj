@@ -64,9 +64,9 @@
     <Compile Include="BotList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Udemy.Models\Udemy.Models.csproj">
+    <ProjectReference Include="..\WebScraperApp.Models\WebScraperApp.Models.csproj">
       <Project>{3669ff95-ad15-4cb6-a506-58731de8aca1}</Project>
-      <Name>Models</Name>
+      <Name>WebScraperApp.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

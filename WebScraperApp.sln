@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Console", "Udemy.Console\Udemy.Console.csproj", "{8A038096-C5C8-482A-BCD9-A224A07275C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraperApp.ConsoleApp", "WebScraperApp.ConsoleApp\WebScraperApp.ConsoleApp.csproj", "{8A038096-C5C8-482A-BCD9-A224A07275C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Udemy.Models\Udemy.Models.csproj", "{3669FF95-AD15-4CB6-A506-58731DE8ACA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraperApp.Models", "WebScraperApp.Models\WebScraperApp.Models.csproj", "{3669FF95-AD15-4CB6-A506-58731DE8ACA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Udemy.Business\Udemy.Business.csproj", "{8E69216E-C1DB-4F84-8C29-97B7EB8E519A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraperApp.Business", "WebScraperApp.Business\WebScraperApp.Business.csproj", "{8E69216E-C1DB-4F84-8C29-97B7EB8E519A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
