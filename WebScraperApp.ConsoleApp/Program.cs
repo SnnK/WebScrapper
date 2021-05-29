@@ -60,7 +60,7 @@ namespace WebScraperApp.ConsoleApp
 
         static void Save()
         {
-            StreamWriter file = new StreamWriter("courses.txt");
+            var file = new StreamWriter("courses.txt");
             var datas = new Datas();
 
             foreach (var line in datas.findCourses)
@@ -71,7 +71,7 @@ namespace WebScraperApp.ConsoleApp
             Console.WriteLine("saved!");
         }
 
-        static void Commands()
+        private static void Commands()
         {
             Console.WriteLine(@"COMMANDS
 /quit >> Close App

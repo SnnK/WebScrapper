@@ -16,12 +16,12 @@ namespace WebScraperApp.Business
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                var request = (HttpWebRequest)WebRequest.Create(uri);
                 request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using (StreamReader reader = new StreamReader(stream))
+                using (var response = (HttpWebResponse)request.GetResponse())
+                using (var stream = response.GetResponseStream())
+                using (var reader = new StreamReader(stream))
                 {
                     return reader.ReadToEnd();
                 }
@@ -50,37 +50,31 @@ namespace WebScraperApp.Business
         {
             var links = new List<string>();
 
-            if (html != null)
-            {
-                foreach (HtmlNode data in html)
-                {
-                    links.Add(data.Attributes["href"].Value.Trim());
-                }
-            }
+            if (html == null) return links;
+
+            links.AddRange(html.Select(data => data.Attributes["href"].Value.Trim()));
 
             return links;
         }
 
         public static List<Links> FindUdemies(List<string> links, string searchStr = "udemy.com/")
         {
-            List<Links> ulinks = new List<Links>();
+            var ulinks = new List<Links>();
 
-            if (links.Count() > 0)
+            if (!links.Any()) return ulinks;
+
+            foreach (var item in links)
             {
-                foreach (var item in links)
-                {
-                    string htmlDocDetail = GetWebSource(item);
-                    List<string> linkdtl = FindHrefs(htmlDocDetail);
+                string htmlDocDetail = GetWebSource(item);
+                List<string> linkdtl = FindHrefs(htmlDocDetail);
 
-                    if (linkdtl.Any())
+                if (!linkdtl.Any()) continue;
+
+                foreach (string linkditem in linkdtl)
+                {
+                    if (linkditem.Contains(searchStr))
                     {
-                        foreach (string linkditem in linkdtl)
-                        {
-                            if (linkditem.Contains(searchStr))
-                            {
-                                ulinks.Add(new Links { Udemyurl = linkditem });
-                            }
-                        }
+                        ulinks.Add(new Links { Udemyurl = linkditem });
                     }
                 }
             }
@@ -92,7 +86,7 @@ namespace WebScraperApp.Business
         #region extension_methods
         public static string DecodeHtmlEntities(this object s)
         {
-            StringWriter writer = new StringWriter();
+            var writer = new StringWriter();
             HttpUtility.HtmlDecode(s.ToString(), writer);
 
             return writer.ToString();

@@ -37,33 +37,34 @@ namespace WebScraperApp.Business
 
                 GetDetails(findu);
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
         private void GetDetails(List<Links> data)
         {
             foreach (var item in data)
             {
-                if (item.Udemyurl.Contains("udemy.com/"))
-                {
-                    string title = string.Empty;
-                    Uri myUri = new Uri(item.Udemyurl);
-                    string coupon_code = HttpUtility.ParseQueryString(myUri.Query).Get("couponcode");
+                if (!item.Udemyurl.Contains("udemy.com/")) continue;
 
-                    var htmlDoc = web.Load(item.Udemyurl);
+                string title = string.Empty;
+                Uri myUri = new Uri(item.Udemyurl);
+                string coupon_code = HttpUtility.ParseQueryString(myUri.Query).Get("couponcode");
 
-                    var h1 = htmlDoc.DocumentNode.SelectSingleNode("//h1");
-                    if (h1 != null)
-                        title = h1.InnerText.Replace("\n", "").DecodeHtmlEntities();
+                var htmlDoc = web.Load(item.Udemyurl);
 
-                    string udemy_link = htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']").Attributes["href"].Value;
+                var h1 = htmlDoc.DocumentNode.SelectSingleNode("//h1");
+                if (h1 != null)
+                    title = h1.InnerText.Replace("\n", "").DecodeHtmlEntities();
 
-                    if (!string.IsNullOrWhiteSpace(title))
-                    {
-                        findCourses.Add(new Courses { Title = title, Udemy_link = udemy_link, Coupon_code = coupon_code });
-                        Console.WriteLine($"Title: {title} | Link: {udemy_link} | Coupon Code: {coupon_code}");
-                    }
-                }
+                string udemy_link = htmlDoc.DocumentNode.SelectSingleNode("//link[@rel='canonical']").Attributes["href"].Value;
+
+                if (string.IsNullOrWhiteSpace(title)) continue;
+
+                findCourses.Add(new Courses { Title = title, Udemy_link = udemy_link, Coupon_code = coupon_code });
+                Console.WriteLine($"Title: {title} | Link: {udemy_link} | Coupon Code: {coupon_code}");
             }
         }
     }
