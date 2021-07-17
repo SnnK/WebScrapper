@@ -43,7 +43,7 @@ namespace WebScraperApp.Business
             }
         }
 
-        private void GetDetails(List<Links> data)
+        private void GetDetails(IEnumerable<Links> data)
         {
             foreach (var item in data)
             {
