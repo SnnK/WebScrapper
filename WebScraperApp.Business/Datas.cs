@@ -9,7 +9,7 @@ namespace WebScraperApp.Business
     public class Datas
     {
         private readonly HtmlWeb web;
-        public readonly List<Courses> findCourses;
+        public List<Courses> FindCourses { get; }
 
         public Datas()
         {
@@ -19,7 +19,7 @@ namespace WebScraperApp.Business
                 UseCookies = true
             };
 
-            findCourses = new List<Courses>();
+            FindCourses = new List<Courses>();
         }
 
         public void Collect(string target, string html)
@@ -63,7 +63,7 @@ namespace WebScraperApp.Business
 
                 if (string.IsNullOrWhiteSpace(title)) continue;
 
-                findCourses.Add(new Courses { Title = title, Udemy_link = udemy_link, Coupon_code = coupon_code });
+                FindCourses.Add(new Courses { Title = title, Udemy_link = udemy_link, Coupon_code = coupon_code });
                 Console.WriteLine($"Title: {title} | Link: {udemy_link} | Coupon Code: {coupon_code}");
             }
         }

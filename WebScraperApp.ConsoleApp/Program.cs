@@ -8,7 +8,7 @@ namespace WebScraperApp.ConsoleApp
 {
     public class UdemyConsole
     {
-        static void Main()
+        private static void Main()
         {
             Commands();
 
@@ -41,7 +41,7 @@ namespace WebScraperApp.ConsoleApp
             }
         }
 
-        static void Start()
+        private static void Start()
         {
             var tasks = new List<Task>();
             var datas = new Datas();
@@ -58,12 +58,12 @@ namespace WebScraperApp.ConsoleApp
             Console.WriteLine("done!");
         }
 
-        static void Save()
+        private static void Save()
         {
             var file = new StreamWriter("courses.txt");
             var datas = new Datas();
 
-            foreach (var line in datas.findCourses)
+            foreach (var line in datas.FindCourses)
                 file.WriteLine($"Title: {line.Title} | Link: {line.Udemy_link} | Coupon Code: {line.Coupon_code}");
 
             file.Close();
